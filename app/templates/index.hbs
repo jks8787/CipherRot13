@@ -1,0 +1,24 @@
+<div class="messages">
+  {{#each}}
+  <hr>
+  <section>
+    <header>
+      <h1>{{title}}</h1>
+    </header>
+    <section>
+      <header>
+        <h1>Original</h1>
+      </header>
+      {{textarea value=contentOriginal}}
+      <br>
+      <button>Encode</button>
+    </section>
+    <section>
+      <header>
+        <h1>Encoded</h1>
+      </header>
+      <p>{{contentEncoded}}</p>
+    </section>
+  </section>
+  {{/each}}
+</div>
