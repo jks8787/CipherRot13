@@ -1,4 +1,5 @@
 export default Ember.ArrayController.extend({
+  itemController: "message",
   _encode: function(content) {
     var alphabet = this._createInverse({
       " ": " ",
@@ -21,12 +22,14 @@ export default Ember.ArrayController.extend({
     var chars = Ember.A(content.split(""));
 
     // swap for the value of the key
-    var encodedChars = chars.map(function(item, index, enumerable){
-      return alphabet[item];
+    var encodedChars = chars.map(function(item){
+      // || condition takes into account special characters
+      return alphabet[item] || item;
     });
 
     return encodedChars.join("");
   },
+
   _createInverse: function(hash){
     var originalHash = hash;
     var result = {};
@@ -34,6 +37,7 @@ export default Ember.ArrayController.extend({
     for (var key in hash) {
       var value = hash[key];
 
+      // Takes into account spaces
       if (key === value) {
         continue;
       }
